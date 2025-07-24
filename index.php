@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/includes/header.php';
 
 // Création d'un nouveau fichier Excel
 $spreadsheet = new Spreadsheet();

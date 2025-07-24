@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/includes/db.php';
+require __DIR__ . '/includes/header.php';
 
 $colloque_id = isset($_GET['colloque_id']) ? intval($_GET['colloque_id']) : 0;
 

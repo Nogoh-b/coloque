@@ -1,7 +1,8 @@
 <?php
 require __DIR__ . '/includes/db.php';
-    require 'vendor/autoload.php';
-    use PhpOffice\PhpSpreadsheet\IOFactory;
+require 'vendor/autoload.php';
+require __DIR__ . '/includes/header.php';
+use PhpOffice\PhpSpreadsheet\IOFactory;
     
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fichier']) && isset($_POST['titre'])) {
     $titre = $_POST['titre'];

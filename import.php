@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/includes/db.php';
+require __DIR__ . '/includes/header.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 

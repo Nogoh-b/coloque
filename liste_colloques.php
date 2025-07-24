@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/includes/db.php';
+require __DIR__ . '/includes/header.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['terminate_colloque'])) {
   $id = intval($_POST['terminate_colloque']);
