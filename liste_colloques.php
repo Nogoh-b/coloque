@@ -60,7 +60,7 @@ $colloques = $stmt->fetchAll();
                   <button type="submit" class="btn btn-sm btn-danger">Terminer</button>
                 </form>
               <?php else: ?>
-                <a href="export_presence_pdf.php?colloque_id=<?= $c['id'] ?>" class="btn btn-sm btn-outline-primary">Exporter PDF</a>
+                <a href="export_presence_etat.php?colloque_id=<?= $c['id'] ?>" class="btn btn-sm btn-outline-primary">Exporter PDF</a>
               <?php endif ?>
             </td>
           </tr>

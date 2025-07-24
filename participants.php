@@ -28,6 +28,7 @@ $participants = $stmt->fetchAll();
 
   <h2 class="mb-4">Participants – <?= htmlspecialchars($colloque['titre']) ?></h2>
   <a href="liste_colloques.php" class="btn btn-secondary mb-3">← Retour à la liste des colloques</a>
+  <a href="export_presence_pdf.php?colloque_id=<?= $colloque_id ?>" class="btn btn-outline-primary mb-3">📄 Exporter en PDF</a>
 
   <?php if (count($participants) > 0): ?>
     <table class="table table-bordered">

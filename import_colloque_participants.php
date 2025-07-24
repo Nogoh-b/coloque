@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fichier']) && isset(
     </div>
     <div class="mb-3">
       <label>Fichier Excel (.xlsx)</label>
-      <input type="file" name="fichier" class="form-control" accept=".xlsx" required>
+      <input type="file" name="fichier" class="form-control" accept=".csv" required>
     </div>
     <button type="submit" class="btn btn-success">Importer le colloque</button>
   </form>

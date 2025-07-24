@@ -103,7 +103,7 @@ if (isset($_POST['import'])) {
 
         <h5 class="mt-4">Fichier des participants</h5>
         <div class="mb-3">
-            <input type="file" name="excel_file" accept=".xlsx" class="form-control" required>
+            <input type="file" name="excel_file" accept=".xlsx, .csv" class="form-control" required>
         </div>
 
         <button type="submit" name="import" class="btn btn-success">Créer le colloque et importer</button>
