@@ -2,5 +2,5 @@
 liste_colloques.php 
 uploads.zip
 vendor.zip
-includes/db.php
+# includes/db.php
 .env
