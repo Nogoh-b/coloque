@@ -30,7 +30,9 @@ $colloques = $stmt->fetchAll();
       <thead>
         <tr>
           <th>Titre</th>
-          <th>Date</th>
+          <th>Date début</th>
+          <th>Date fin</th>
+          <th>Durée (jours)</th>
           <th>Heure</th>
           <th>Lieu</th>
           <th>Statut</th>
@@ -38,37 +40,39 @@ $colloques = $stmt->fetchAll();
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($colloques as $c): ?>
+        <?php foreach ($colloques as $c): 
+          $date_debut = new DateTime($c["date_colloque"]);
+          $date_fin = (clone $date_debut)->modify("+" . ($c["duree"] - 1) . " days");
+          $aujourdhui = new DateTime();
+        ?>
           <tr>
             <td><?= htmlspecialchars($c['titre']) ?></td>
-            <td><?= htmlspecialchars($c['date_colloque']) ?></td>
-            <td><?= htmlspecialchars($c['heure_colloque']) ?></td>
-            <td><?= htmlspecialchars($c['lieu']) ?></td>
+            <td><?= $date_debut->format("Y-m-d") ?></td>
+            <td><?= $date_fin->format("Y-m-d") ?></td>
+            <td><?= htmlspecialchars($c["duree"]) ?></td>
+            <td><?= htmlspecialchars($c["heure_colloque"]) ?></td>
+            <td><?= htmlspecialchars($c["lieu"]) ?></td>
+            <td><?= htmlspecialchars($c["statut"]) ?></td>
             <td>
-              <?php if ($c['statut'] === 'termine'): ?>
-                <span class="badge bg-danger">Terminé</span>
-              <?php else: ?>
-                <span class="badge bg-success">Actif</span>
-              <?php endif ?>
-            </td>
-            <td>
+              <?php if ($aujourdhui <= $date_fin): ?>
+                <a href="modifier_colloque.php?id=<?= $c["id"] ?>" class="btn btn-primary btn-sm">Éditer</a>
+                <a href="supprimer_colloque.php?id=<?= $c["id"] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Confirmer la suppression ?')">Supprimer</a>
+              <?php endif; ?>
+              <form method="post" style="display:inline;">
+                <input type="hidden" name="terminate_colloque" value="<?= $c["id"] ?>">
+                <button type="submit" class="btn btn-warning btn-sm">Terminer</button>
+              </form>
               <a href="participants.php?colloque_id=<?= $c['id'] ?>" class="btn btn-sm btn-outline-secondary">Participants</a>
               <a href="presence.php?colloque_id=<?= $c['id'] ?>" class="btn btn-sm btn-outline-success">Émargement</a>
-              <?php if ($c['statut'] !== 'termine'): ?>
-                <form method="post" style="display:inline">
-                  <input type="hidden" name="terminate_colloque" value="<?= $c['id'] ?>">
-                  <button type="submit" class="btn btn-sm btn-danger">Terminer</button>
-                </form>
-              <?php else: ?>
-                <a href="export_presence_etat.php?colloque_id=<?= $c['id'] ?>" class="btn btn-sm btn-outline-primary">Exporter PDF</a>
-              <?php endif ?>
+
+              <a href="export_presence_etat.php?colloque_id=<?= $c["id"] ?>" class="btn btn-secondary btn-sm">Exporter</a>
             </td>
           </tr>
-        <?php endforeach ?>
+        <?php endforeach; ?>
       </tbody>
     </table>
   <?php else: ?>
     <div class="alert alert-info">Aucun colloque enregistré pour le moment.</div>
-  <?php endif ?>
+  <?php endif; ?>
 </body>
 </html>
